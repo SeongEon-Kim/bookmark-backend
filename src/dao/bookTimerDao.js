@@ -21,7 +21,7 @@ class BookTimerDao {
         const bookHistoryInfo = await bookHistoryRepo.getBookHistoryListByBookId(bookId)
 
         // deleted book check
-        if (!accountInfo[0] || !bookHistoryInfo[0]){
+        if (!accountInfo || !bookHistoryInfo){
             throw new MyBookNotFound(bookId)
         }
 

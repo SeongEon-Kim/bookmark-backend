@@ -5,7 +5,8 @@ const errCodeString = {
     InvalidParameter    : 'ERR-0002',
     InvalidUUID         : 'ERR-0003',
     UserNotFound        : 'ERR-0004',
-    BookNotFound        : 'ERR-0005'
+    BookNotFound        : 'ERR-0005',
+    InvalidOauthType    : 'ERR-0006',
 }
 
 class MissingRequestParameter extends serviceError {
@@ -32,10 +33,18 @@ class InvalidUUID extends serviceError {
     }
 }
 
+class InvalidOauthType extends serviceError {
+    constructor(oauthType){
+        const message = `invalid oauth type : ${oauthType}`
+        super(message, 400, errCodeString.InvalidOauthType)
+        this.name = this.constructor.name
+    }
+}
+
 
 class AccountNotFound extends serviceError {
-    constructor(userId){
-        const message = `Can not find account ${userId}`
+    constructor({accountId, bookId, oauthId}){
+        const message = `Can not find account : [${accountId}, ${bookId}, ${oauthId}]`
         super(message, 400, errCodeString.UserNotFound)
         this.name = this.constructor.name
     }
@@ -56,5 +65,6 @@ module.exports = {
     InvalidRequestParameter,
     InvalidUUID,
     AccountNotFound,
-    MyBookNotFound
+    MyBookNotFound,
+    InvalidOauthType
 }
