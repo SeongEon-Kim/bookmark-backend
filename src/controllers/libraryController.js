@@ -7,6 +7,12 @@ const getMyList = async (ctx)=>{
     const mylistService = new MyListService()
 
     ctx.body = await mylistService.getMyList(sortType)
+
+    ctx.body.meta = {
+        sortType: sortType,
+        requestId: ctx.state.requestId,
+        now: +new Date(),
+    }
 }
 
 const getBookInfo = async (ctx)=>{

@@ -1,5 +1,4 @@
 const { MyListRepository } =  require('./repositories/mylistRepository')
-const { MyListDecorator } = require('./myListDecorator')
 const { BookHistoryRepository } = require('./repositories/bookHistoryRepository')
 const { BookInfoDecorator } = require('./bookInfoDecorator')
 //const { getMyList } = require('../controllers/libraryController')
@@ -15,16 +14,13 @@ class MyListDao {
 
     async getMyList(sortType){
         const MyListRepo = new MyListRepository()
-        //const myListDecorator = new MyListDecorator()
 
         const myList = await MyListRepo.getMyList(sortType)
-        //const myListInfo = await myListDecorator.decorateMyList(myList)
-        console.log("myList입니다", myList)
 
-        const results = {
+        const result = {
             data :  myList
         }
-        return results
+        return result
     }
 
     async getBookInfo(bookId){
