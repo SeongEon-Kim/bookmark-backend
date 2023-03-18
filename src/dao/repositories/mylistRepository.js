@@ -22,7 +22,6 @@ class MyListRepository {
           query.andWhere('reading', true);
         }
         console.log("sortType입니다. ",sortType)
-
         return await query
         // const result = await query;
         // return result;
