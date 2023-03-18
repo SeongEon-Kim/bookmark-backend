@@ -36,7 +36,7 @@ class BookInfoDecorator {
             "author" : bookInfo[0].author,
             "translators" : bookInfo[0].translators,
             "publisher" : bookInfo[0].publisher,
-            "image" : bookInfo[0].image,
+            "titleImage" : bookInfo[0].image,
             "current_page" : bookInfo[0].current_page, 
             "total_page" : bookInfo[0].total_page,
             "history": history
