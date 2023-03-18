@@ -14,14 +14,14 @@ class MyListService {
         return this._serviceName
     }
 
-    // async getMyList(sortType){
+    async getMyList(sortType){
       
-    //     const myListDao = new MyListDao()
+        const myListDao = new MyListDao()
 
-    //     const myList = await myListDao.getMyList(sortType)
-
-    //     return myList
-    // }
+        const myList = await myListDao.getMyList(sortType)
+        
+        return myList
+    }
 
     async getBookInfo(bookId){
       

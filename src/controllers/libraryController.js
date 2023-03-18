@@ -1,13 +1,13 @@
 const { MyListService } = require('../services')
 
-// const getMyList = async (ctx)=>{
-//     //const userId = ctx.request.header.id;
-//     const { sortType } = ctx.query;
+const getMyList = async (ctx)=>{
+    //const userId = ctx.request.header.id;
+    const { sortType } = ctx.query;
 
-//     const mylistService = new MyListService()
+    const mylistService = new MyListService()
 
-//     ctx.body = mylistService.getMyList(sortType)
-// }
+    ctx.body = await mylistService.getMyList(sortType)
+}
 
 const getBookInfo = async (ctx)=>{
     const {
@@ -26,6 +26,6 @@ const getBookInfo = async (ctx)=>{
 }
 
 module.exports = { 
-    //getMyList,
+    getMyList,
     getBookInfo
 }

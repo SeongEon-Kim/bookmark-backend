@@ -8,25 +8,25 @@ class MyListRepository {
         return this._repositoryName
     }
 
-    // async getMyList(sortType) {
-    //     const query = pgClient.select('id as book_id', 'title', 'authors as author', 'translators', 'publisher', 'thumbnail_url as titleImage', 'reading', 'favorite', 'meta')
-    //                     .from('tbl_mybook as tb')
+    async getMyList(sortType) {
+        const query = pgClient.select('id as book_id', 'title', 'authors as author', 'translators', 'publisher', 'thumbnail_url as titleImage', 'reading', 'favorite', 'meta')
+                        .from('tbl_mybook as tb')
       
-    //     if (sortType === 'latest') {
-    //       query.orderBy('created_at', 'desc');
-    //     } else if (sortType === 'past') {
-    //       query.orderBy('created_at', 'asc');
-    //     } else if (sortType === 'favorite') {
-    //       query.andWhere('favorite', false);
-    //     } else if (sortType === 'reading') {
-    //       query.andWhere('reading', true);
-    //     }
-    //     console.log("sortType입니다. ",sortType)
+        if (sortType === 'latest') {
+          query.orderBy('created_at', 'desc');
+        } else if (sortType === 'past') {
+          query.orderBy('created_at', 'asc');
+        } else if (sortType === 'favorite') {
+          query.andWhere('favorite', true);
+        } else if (sortType === 'reading') {
+          query.andWhere('reading', true);
+        }
+        console.log("sortType입니다. ",sortType)
 
-    //     // return await query
-    //     const result = await query;
-    //     return result;
-    //   }
+        return await query
+        // const result = await query;
+        // return result;
+      }
 
     async getBookInfo(bookId){
         const query = pgClient.select('id as book_id', 'title', 'authors as author', 'translators', 'publisher', 'thumbnail_url as image', 'current_page', 'total_page', 'meta')
