@@ -11,11 +11,29 @@ const getBookTimer = async (ctx)=>{
     const inst = new BookTimerService()
 
     if(bookId){
-        ctx.body = await inst.getTimerByBookId(bookId)
+        ctx.body = await inst.getBookTimerByBookId(bookId)
+    }
+}
+
+const postReadingTime = async (ctx)=>{
+    const {
+        params: {
+            bookId
+        }
+    } = ctx
+
+    const readingTime = ctx.request.body.reading_time
+
+
+    const inst = new BookTimerService()
+
+    if(bookId && readingTime){
+        ctx.body = await inst.addReadingTime(bookId, readingTime)
     }
 }
 
 
 module.exports = { 
-    getBookTimer
+    getBookTimer,
+    postReadingTime
 }

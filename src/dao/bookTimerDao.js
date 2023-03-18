@@ -32,6 +32,25 @@ class BookTimerDao {
         }
         return result
     }
+
+    async postReadingTimeInfo(bookId, reading_time){
+        const accountRepo = new AccountRepository()
+        const bookHistoryRepo = new BookHistoryRepository()
+
+        const accountInfo = await accountRepo.getAccountByBookId(bookId)
+        
+        // deleted book check
+        if (!accountInfo){
+            throw new MyBookNotFound(bookId)
+        }
+
+        const postResults = await bookHistoryRepo.postReadingTimeByBookId(accountInfo.user_id, bookId, reading_time)
+
+        const result = {
+            data : postResults
+        }
+        return result
+    }
 }
 
 module.exports = { BookTimerDao }
